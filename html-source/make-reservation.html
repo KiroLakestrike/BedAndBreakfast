@@ -30,7 +30,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    <a class="nav-link active" aria-current="page" href="/html-source/static">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="about.html">About</a>
@@ -59,20 +59,31 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <img src="/static/images/generals-quarters.png" class="img-fluid img-thumbnail mx-auto d-block room-image" alt="Responsive image">
+            <h1>MAke Reservation</h1>
+            <form action="" method="post" class="needs-validation" novalidate>
+                <div class="form-group mt-5">
+                    <label for="first_name">First Name</label>
+                    <input type="text" id="first_name" class="form-control" name="first_name"required autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label for="last_name">First Name</label>
+                    <input type="text" id="last_name" class="form-control" name="last_name" required autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label for="email">E-Mail</label>
+                    <input type="email" id="email" class="form-control" name="email" required autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label for="email">Phone Number</label>
+                    <input type="text" id="email" class="form-control" name="email" required autocomplete="off">
+                </div>
+                <hr>
+                <input type="submit" class="btn btn-primary" value="Make Reservation">
+            </form>
         </div>
     </div>
-    <div class="row">
-        <div class="col">
-            <h1 class="text-center mt-4">Generals Quarters</h1>
-            <p class="text-center">This is a text to fill this gap. no real text will come here blah blah :D Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam</p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col text-center">
-            <a href="/book-now-gq" class="btn btn-success">Check availability</a>
-        </div>
-    </div>
+
+
 </div>
 <div class="row my-footer">
     <div class="col">
