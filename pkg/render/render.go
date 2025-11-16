@@ -9,6 +9,7 @@ import (
 
 	"github.com/KiroLakestrike/BedAndBreakfast/pkg/config"
 	"github.com/KiroLakestrike/BedAndBreakfast/pkg/models"
+	"github.com/justinas/nosurf"
 )
 
 var app *config.AppConfig
@@ -19,13 +20,13 @@ func NewTemplates(a *config.AppConfig) {
 }
 
 // AddDefaultData adds default data to the template data struct before rendering
-func AddDefaultData(td *models.TemplateData) *models.TemplateData {
-	// Currently just returns the passed data without modification
+func AddDefaultData(td *models.TemplateData, r *http.Request) *models.TemplateData {
+	td.CSRFToken = nosurf.Token(r)
 	return td
 }
 
 // RenderTemplate renders templates using html/template and writes output to http.ResponseWriter
-func RenderTemplate(w http.ResponseWriter, tmpl string, td *models.TemplateData) {
+func RenderTemplate(w http.ResponseWriter, r *http.Request, tmpl string, td *models.TemplateData) {
 	var tc map[string]*template.Template
 	// Get the template cache from AppConfig depending on whether caching is enabled
 	if app.UseCache {
@@ -45,7 +46,7 @@ func RenderTemplate(w http.ResponseWriter, tmpl string, td *models.TemplateData)
 	buf := new(bytes.Buffer)
 
 	// Add any default data to the template data
-	td = AddDefaultData(td)
+	td = AddDefaultData(td, r)
 	// Execute the template with the provided data, writing output to the buffer
 	err := t.Execute(buf, td)
 
