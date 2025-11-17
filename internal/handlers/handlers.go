@@ -1,12 +1,14 @@
 package handlers
 
 import (
+	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
 
-	"github.com/KiroLakestrike/BedAndBreakfast/pkg/config"
-	"github.com/KiroLakestrike/BedAndBreakfast/pkg/models"
-	"github.com/KiroLakestrike/BedAndBreakfast/pkg/render"
+	"github.com/KiroLakestrike/BedAndBreakfast/internal/config"
+	"github.com/KiroLakestrike/BedAndBreakfast/internal/models"
+	"github.com/KiroLakestrike/BedAndBreakfast/internal/render"
 )
 
 var Repo *Repository
@@ -71,6 +73,28 @@ func (m *Repository) PostAvailability(w http.ResponseWriter, r *http.Request) {
 	end := r.Form.Get("end")
 
 	w.Write([]byte(fmt.Sprintf("start date is %s and end date is %s", start, end)))
+}
+
+// JsonResponse Struct
+type jsonResponse struct {
+	OK      bool   `json:"ok"`
+	Message string `json:"message"`
+}
+
+// AvailabilityJSON handles requests for availability and send JSON response
+func (m *Repository) AvailabilityJSON(w http.ResponseWriter, r *http.Request) {
+	resp := jsonResponse{
+		OK:      true,
+		Message: "Available!",
+	}
+
+	out, err := json.MarshalIndent(resp, "", "    ")
+	if err != nil {
+		log.Println(err)
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	w.Write(out)
 }
 
 // Contact renders the room page

@@ -5,9 +5,9 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/KiroLakestrike/BedAndBreakfast/pkg/config"
-	"github.com/KiroLakestrike/BedAndBreakfast/pkg/handlers"
-	"github.com/KiroLakestrike/BedAndBreakfast/pkg/render"
+	"github.com/KiroLakestrike/BedAndBreakfast/internal/config"
+	"github.com/KiroLakestrike/BedAndBreakfast/internal/handlers"
+	"github.com/KiroLakestrike/BedAndBreakfast/internal/render"
 )
 
 func main() {

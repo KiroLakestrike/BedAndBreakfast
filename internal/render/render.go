@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"path/filepath"
 
-	"github.com/KiroLakestrike/BedAndBreakfast/pkg/config"
-	"github.com/KiroLakestrike/BedAndBreakfast/pkg/models"
+	"github.com/KiroLakestrike/BedAndBreakfast/internal/config"
+	"github.com/KiroLakestrike/BedAndBreakfast/internal/models"
 	"github.com/justinas/nosurf"
 )
 
