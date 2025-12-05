@@ -18,7 +18,25 @@ var session *scs.SessionManager
 var app config.AppConfig
 
 func main() {
+	err := run()
+	if err != nil {
+		log.Fatal(err)
+	}
 
+	// Load Handlers
+	srv := &http.Server{
+		Addr:    app.PortNumber,
+		Handler: routes(&app),
+	}
+
+	fmt.Println(fmt.Sprintf("Listening on http://localhost%v", app.PortNumber))
+	err = srv.ListenAndServe()
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+
+func run() error {
 	gob.Register(models.Reservation{})
 
 	app.InProduction = false
@@ -34,6 +52,7 @@ func main() {
 	tc, err := render.CreateTemplateCache()
 	if err != nil {
 		log.Fatal(err)
+		return err
 	}
 
 	app.TemplateCache = tc
@@ -45,15 +64,5 @@ func main() {
 
 	render.NewTemplates(&app)
 
-	// Load Handlers
-	srv := &http.Server{
-		Addr:    app.PortNumber,
-		Handler: routes(&app),
-	}
-
-	fmt.Println(fmt.Sprintf("Listening on http://localhost%v", app.PortNumber))
-	err = srv.ListenAndServe()
-	if err != nil {
-		log.Fatal(err)
-	}
+	return nil
 }
